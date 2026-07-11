@@ -138,31 +138,31 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
 .year-group { position: relative; padding: 0 0 2.4rem; }
 .year-group:last-child { padding-bottom: 0; }
 .year {
-  position: absolute; left: -5.5rem; top: .55rem;
+  position: absolute; left: -5.5rem; top: 1.35rem;
   width: 3.4rem;
   font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-3);
 }
 .year-group::before {           /* tick on the spine */
   content: "";
-  position: absolute; left: -2.1rem; top: 1.05rem;
+  position: absolute; left: -2.1rem; top: 1.6rem;
   width: 9px; height: 9px; border-radius: 50%;
   background: var(--bg); border: 1.5px solid var(--ink);
 }
 
 .proj {
   display: block;
-  padding: 1.05rem 1.1rem;
-  margin: 0 -1.1rem;
-  border-radius: 6px;
-  transition: background .15s ease;
+  padding: 1.15rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  transition: border-color .15s ease, background .15s ease;
 }
-.proj:hover { background: var(--hover); }
-.proj + .proj { margin-top: .15rem; }
+.proj:hover { background: var(--hover); border-color: var(--ink); }
+.proj + .proj { margin-top: .7rem; }
 .proj .p-title {
   font-family: var(--font-display); font-weight: 600; font-size: 1.1rem;
-  display: flex; align-items: baseline; gap: .5rem;
+  display: flex; align-items: baseline; gap: .75rem;
 }
-.proj .p-title .arrow { font-family: var(--font-body); color: var(--ink-3); transition: transform .15s ease, color .15s ease; }
+.proj .p-title .arrow { font-family: var(--font-body); color: var(--ink-3); margin-left: auto; transition: transform .15s ease, color .15s ease; }
 .proj:hover .arrow { transform: translateX(3px); color: var(--ink); }
 .proj .p-desc { color: var(--ink-2); font-size: .95rem; margin-top: .3rem; max-width: 56ch; }
 .proj .p-tags { margin-top: .55rem; font-family: var(--font-mono); font-size: .75rem; color: var(--ink-3); }
@@ -250,6 +250,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
   .timeline::before { display: none; }
   .year-group::before { display: none; }
   .year { position: static; width: auto; display: block; margin-bottom: .5rem; padding-bottom: .4rem; border-bottom: 1px solid var(--line); }
-  .proj { margin: 0 -.6rem; padding: .9rem .6rem; }
+  .proj { padding: 1rem 1.1rem; }
   .file { grid-template-columns: 1fr; gap: .15rem; }
 }
