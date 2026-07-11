@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWM Generation &amp; Monitoring System · Emil Vu</title>
+  <meta name="description" content="Bare-metal STM32F0 system that measures and controls an NE555 PWM source — potentiometer-driven frequency control, EXTI edge timing, and a live OLED readout.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Emil Vu</a>
+      <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="page">Projects</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <p class="crumb"><a href="../index.html#projects">← All projects</a></p>
+
+    <header class="p-head">
+      <p class="kicker">2024 · ECE 355 · Microprocessor-Based Systems · Team of 2</p>
+      <h1>PWM Generation &amp; Monitoring System</h1>
+      <p class="dek">
+        A bare-metal STM32F0 system that both drives and measures a PWM signal: a
+        potentiometer steers an NE555 timer through an optocoupler, while the MCU times
+        signal edges and reports frequency and resistance live on an OLED.
+      </p>
+    </header>
+
+    <figure class="figure">
+      <img class="tall" src="../assets/img/ece355-bench.jpg" alt="Test station: STM32F0 Discovery board and NE555 circuit on a breadboard beside a bench function generator and oscilloscope" width="1056" height="1408">
+      <figcaption>The test station — STM32F0 Discovery, NE555/4N35 breadboard circuit, function generator and oscilloscope for verification.</figcaption>
+    </figure>
+
+    <article class="p-body">
+
+      <h2>Overview</h2>
+      <p>
+        Everything here is register-level C with CMSIS — no HAL. The board's ADC reads a
+        potentiometer, and the DAC drives a 4N35 optocoupler that varies the effective
+        resistance seen by an NE555 astable circuit, changing its output frequency. That
+        PWM signal returns to the MCU, where an EXTI interrupt and a hardware timer
+        measure the period edge-to-edge. A push-button (also on EXTI) switches the
+        measurement source between the 555 circuit and a bench function generator.
+      </p>
+      <p>
+        Measured frequency and computed potentiometer resistance stream to an SPI OLED
+        display that refreshes in real time. Accuracy was characterized against the bench
+        function generator across the operating range, and edge cases — source
+        disconnection, source switching, hardware reset — were tested explicitly.
+      </p>
+
+      <h2>Highlights</h2>
+      <ul>
+        <li>Pure CMSIS register programming: TIM, EXTI, ADC, DAC, SPI, and NVIC configuration by hand.</li>
+        <li>Interrupt-driven period measurement of an external PWM source, with source switching on a debounced button.</li>
+        <li>Analog control path: DAC → 4N35 optocoupler → NE555, closing the loop between firmware and a classic analog timer.</li>
+        <li>Live SPI OLED dashboard showing frequency and resistance, verified against lab instruments.</li>
+      </ul>
+
+      <div class="tags">
+        <span class="tag">STM32F0</span>
+        <span class="tag">C / CMSIS</span>
+        <span class="tag">NE555 · 4N35</span>
+        <span class="tag">EXTI · Timers</span>
+        <span class="tag">ADC · DAC</span>
+        <span class="tag">SPI OLED</span>
+      </div>
+
+      <h2>Files &amp; downloads</h2>
+      <div class="files">
+        <div class="file">
+          <span class="f-name"><a href="../files/ece355-pwm-system/ECE355_PWM_System_Report.pdf">Project Report</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">2.5 MB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece355-pwm-system/code/pwm_monitor_stm32f0.c">pwm_monitor_stm32f0.c — full source</a></span>
+          <span class="f-kind">C</span><span class="f-size">37 KB</span>
+        </div>
+      </div>
+
+      <nav class="pager" aria-label="Project navigation">
+        <a href="ece299-alarm-clock.html">← STM32 Alarm Clock</a>
+        <span class="spacer"></span>
+        <a href="ece455-real-time-systems.html">Real-Time Systems on FreeRTOS →</a>
+      </nav>
+
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Emil Vu</p>
+      <p>Plain HTML &amp; CSS · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

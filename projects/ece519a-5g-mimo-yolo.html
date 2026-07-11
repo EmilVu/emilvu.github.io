@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5G Massive-MIMO Video Link with YOLOv10 · Emil Vu</title>
+  <meta name="description" content="GPU-accelerated 5G NR physical-layer simulation (64×4 massive MIMO, SVD precoding, OFDM) streaming live video through fading channels into real-time YOLOv10 object detection.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Emil Vu</a>
+      <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="page">Projects</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <p class="crumb"><a href="../index.html#projects">← All projects</a></p>
+
+    <header class="p-head">
+      <p class="kicker">2026 · ECE 519A · Graduate course · Team of 2</p>
+      <h1>5G Massive-MIMO Video Link with YOLOv10</h1>
+      <p class="dek">
+        A GPU-accelerated simulation of a full 5G NR physical layer — 64×4 massive MIMO
+        with SVD precoding, QPSK/OFDM, and 3GPP fading channels — carrying live webcam
+        video into real-time YOLOv10 object detection at the receiving edge.
+      </p>
+    </header>
+
+    <figure class="figure">
+      <img src="../assets/img/ece519a-demo.jpg" alt="Live demo window: YOLOv10 detection boxes over webcam video received through the simulated 64×4 massive-MIMO link, with a status bar reading DIST 2000 m, SNR 18.4 dB, beamforming gain 8.73, throughput 13.16 Mbps" width="966" height="760">
+      <figcaption>The live demo — YOLOv10 detections on video received through the 64×4 massive-MIMO link at a simulated 2&nbsp;km: SNR 18.4&nbsp;dB, beamforming gain 8.73, 13.16&nbsp;Mbps.</figcaption>
+    </figure>
+
+    <article class="p-body">
+
+      <h2>Overview</h2>
+      <p>
+        Edge AI needs high-resolution video, and 5G links fight path loss, multipath
+        fading, and noise the whole way. This project quantifies how those physical-layer
+        impairments actually affect a modern detector. We built the transmit/receive chain
+        in Python — QPSK modulation, OFDM with cyclic prefix, SVD-based beamforming over a
+        64×4 antenna configuration, and Rayleigh / 3GPP Urban-Micro channel models — and
+        accelerated the matrix-heavy parts with CuPy so the whole pipeline runs in real
+        time on one GPU alongside the detector.
+      </p>
+      <p>
+        Live webcam frames are compressed adaptively based on the instantaneous SNR,
+        pushed through the simulated channel, reconstructed, and handed to YOLOv10 —
+        chosen for its NMS-free, low-latency design. The result is a live demo where you
+        can watch detection confidence respond as simulated distance and channel
+        conditions change, from a clean SISO baseline out to a 50&nbsp;km massive-MIMO
+        downlink.
+      </p>
+
+      <h2>Highlights</h2>
+      <ul>
+        <li>End-to-end 5G NR PHY in Python: QPSK, OFDM + cyclic prefix, SVD precoding/combining, AWGN and Rayleigh fading.</li>
+        <li>64×4 massive-MIMO beamforming sustains detection at simulated distances where the SISO link collapses.</li>
+        <li>CuPy GPU acceleration keeps the PHY simulation and YOLOv10 inference running concurrently in real time.</li>
+        <li>SNR-adaptive video compression trades resolution for robustness as the channel degrades.</li>
+      </ul>
+
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">CuPy · GPU</span>
+        <span class="tag">5G NR · OFDM</span>
+        <span class="tag">Massive MIMO</span>
+        <span class="tag">SVD beamforming</span>
+        <span class="tag">YOLOv10</span>
+        <span class="tag">OpenCV</span>
+      </div>
+
+      <h2>Files &amp; downloads</h2>
+      <div class="files">
+        <div class="file">
+          <span class="f-name"><a href="../files/ece519a-5g-mimo-yolo/ECE519A_Final_Report.pdf">Final Report (IEEE format)</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">812 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece519a-5g-mimo-yolo/ECE519A_Presentation.pptx">Presentation Slides</a></span>
+          <span class="f-kind">PPTX</span><span class="f-size">9.2 MB</span>
+        </div>
+      </div>
+
+      <nav class="pager" aria-label="Project navigation">
+        <a href="ece499-hf-amplifier.html">← 140 W HF Linear Amplifier</a>
+        <span class="spacer"></span>
+        <a href="myfoc.html">MyFOC — FOC from Scratch →</a>
+      </nav>
+
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Emil Vu</p>
+      <p>Plain HTML &amp; CSS · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

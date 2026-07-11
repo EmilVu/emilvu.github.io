@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>140 W HF Linear Amplifier · Emil Vu</title>
+  <meta name="description" content="B.Eng. capstone: a portable 140 W PEP HF linear amplifier (1.8–30 MHz, AM/SSB) with custom band-pass and low-pass filters, designed for emergency communications.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Emil Vu</a>
+      <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="page">Projects</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <p class="crumb"><a href="../index.html#projects">← All projects</a></p>
+
+    <header class="p-head">
+      <p class="kicker">2025 · ECE 499 · B.Eng. Capstone · Team of 4</p>
+      <h1>140 W HF Linear Amplifier for Emergency Communications</h1>
+      <p class="dek">
+        A portable 1.8–30&nbsp;MHz AM/SSB linear amplifier that modernizes the classic
+        Motorola EB63 design — built so rural communities can keep long-range HF radio
+        links alive when wildfires take out power and cell networks.
+      </p>
+    </header>
+
+    <figure class="figure">
+      <img src="../assets/img/ece499-enclosure.jpg" alt="Finished amplifier in a laser-cut wooden enclosure labeled Squawker Talker, 1.8–30 MHz HF Radio Amplifier, with Power, Fans, Mode Select and Amp Bypass toggle switches, a cooling fan on top, and the UVic Electrical Engineering seal" width="757" height="425">
+      <figcaption>The finished unit — "Squawker Talker," v1.0. Laser-cut enclosure with power, fan, AM/SSB mode-select, and amplifier-bypass switches.</figcaption>
+    </figure>
+
+    <article class="p-body">
+
+      <h2>Overview</h2>
+      <p>
+        During BC's wildfire seasons, rural communities routinely lose power, cellular,
+        and internet service — exactly when coordination matters most. Our capstone team
+        designed a high-power, low-cost HF amplifier that pairs with affordable HF radios
+        to restore long-range voice links. The design modernizes the Motorola EB63
+        application-note amplifier: obsolete parts were replaced with current equivalents,
+        and we added mode selection, a manual bypass path, and fuse protection.
+      </p>
+      <p>
+        The filtering chain is fully custom: a two-stage π-network constant-k band-pass
+        filter (1.8–30&nbsp;MHz) on the input and a 9th-order T-network Chebyshev low-pass
+        filter (30&nbsp;MHz cutoff) on the output, both simulated in LTspice before
+        layout. The prototype was assembled with a custom coil-winding jig, housed in a
+        laser-cut and 3D-printed enclosure, and validated on a VNA (filter S21 response)
+        and with AM-mode power sweeps against the 140&nbsp;W PEP target.
+      </p>
+
+      <h2>My role</h2>
+      <ul>
+        <li>Designed and iterated the project's support PCBs in EasyEDA — band-pass filter (four revisions), low-pass filter, switch board, fuse board, and LM317 step-down board — through to CAM fabrication files.</li>
+        <li>Separated the EB63A RF deck from the switching circuitry to simplify assembly and make controls accessible on the enclosure.</li>
+        <li>Ordered an MRF454 footprint-test PCB to verify the power-transistor land pattern before committing the main board.</li>
+        <li>Wound and assembled the filter boards, then validated their frequency response on the VNA.</li>
+      </ul>
+
+      <figure class="figure">
+        <img src="../assets/img/ece499-schematic.png" alt="Amplifier schematic: relay-switched RF input, MJE243 bias network, and a push–pull pair of MRF454 power transistors coupled through 16:1 RF transformers" width="900" height="431">
+        <figcaption>The modernized EB63 amplifier stage — relay bypass, MJE243 bias network, and the MRF454 push–pull pair between 16:1 RF transformers.</figcaption>
+      </figure>
+
+      <div class="tags">
+        <span class="tag">RF amplifier design</span>
+        <span class="tag">Filter design</span>
+        <span class="tag">LTspice</span>
+        <span class="tag">EasyEDA / KiCad</span>
+        <span class="tag">PCB fabrication</span>
+        <span class="tag">VNA testing</span>
+      </div>
+
+      <h2>Files &amp; downloads</h2>
+      <div class="files">
+        <div class="file">
+          <span class="f-name"><a href="../files/ece499-hf-amplifier/ECE499_Final_Report.pdf">Final Report</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">7.9 MB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece499-hf-amplifier/ECE499_Project_Poster.pdf">Project Poster</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">2.1 MB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece499-hf-amplifier/ECE499_Progress_Report.pdf">Progress Report</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">3.9 MB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece499-hf-amplifier/ECE499_Filter_Schematics.pdf">Filter Schematics</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">404 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece499-hf-amplifier/ECE499_PCB_Design_Notes_Emil.pdf">My PCB Design Notes</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">804 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece499-hf-amplifier/ECE499_Bill_of_Materials.xlsx">Bill of Materials</a></span>
+          <span class="f-kind">XLSX</span><span class="f-size">16 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="https://github.com/EmilVu/emilvu.github.io/tree/main/files/ece499-hf-amplifier/pcb">PCB fabrication files — browse</a></span>
+          <span class="f-kind">CAM · Gerber</span><span class="f-size">1.1 MB</span>
+        </div>
+      </div>
+      <p class="files-note">
+        The team also maintains a detailed project site:
+        <a class="link" href="https://zhouqiwei48.wixsite.com/ece-499" target="_blank" rel="noopener">ECE 499 — Design Project II</a>.
+      </p>
+
+      <nav class="pager" aria-label="Project navigation">
+        <a href="ece449-custom-cpu.html">← 16-bit Pipelined CPU</a>
+        <span class="spacer"></span>
+        <a href="ece519a-5g-mimo-yolo.html">5G Massive-MIMO + YOLOv10 →</a>
+      </nav>
+
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Emil Vu</p>
+      <p>Plain HTML &amp; CSS · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

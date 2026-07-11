@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyFOC — Field-Oriented Control from Scratch · Emil Vu</title>
+  <meta name="description" content="A from-scratch field-oriented control (FOC) library for BLDC/PMSM motors on ATmega328P, with automated motor identification and an impedance mode for arm rehabilitation.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Emil Vu</a>
+      <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="page">Projects</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <p class="crumb"><a href="../index.html#projects">← All projects</a></p>
+
+    <header class="p-head">
+      <p class="kicker">2026 · M.Eng. Thesis · Solo project</p>
+      <h1>MyFOC — Field-Oriented Control from Scratch</h1>
+      <p class="dek">
+        A complete FOC motor-control library for three-phase BLDC/PMSM motors, written
+        from first principles in C/C++ — no SimpleFOC, no vendor libraries — and applied
+        to an adaptive arm-rehabilitation device.
+      </p>
+    </header>
+
+    <figure class="figure">
+      <img src="../assets/img/myfoc-setup.jpg" alt="Complete MyFOC setup: gimbal motor with 3D-printed pendulum arm clamped to the desk, wired to an Arduino UNO and the DRV8302 three-phase inverter board" width="914" height="496">
+      <figcaption>The complete setup — GM4108 gimbal motor with 3D-printed mount and handle, Arduino UNO, and the DRV8302 three-phase inverter.</figcaption>
+    </figure>
+
+    <article class="p-body">
+
+      <h2>Overview</h2>
+      <p>
+        Field-oriented control is usually the domain of 32-bit MCUs and vendor toolchains.
+        MyFOC implements the full stack on an 8-bit ATmega328P (Arduino UNO): forward and
+        inverse Clarke/Park transforms, space-vector PWM with min–max common-mode
+        injection, register-level 31.4&nbsp;kHz phase-correct PWM on Timer1/Timer2, and
+        ISR-based 4× quadrature decoding — all written from scratch so every equation in
+        the thesis maps to a line of code.
+      </p>
+      <p>
+        On top of the core loop sit cascaded velocity and position controllers with
+        anti-windup PID, an optional inner d/q current loop with cross-axis decoupling
+        feed-forward, and an impedance/admittance mode that turns the motor into a
+        programmable spring–damper — the basis of the rehabilitation application, where
+        resistance adapts to the patient's effort.
+      </p>
+
+      <h2>Highlights</h2>
+      <ul>
+        <li>Automated identification of all four PMSM electrical parameters (R<sub>phase</sub>, L<sub>d</sub>, L<sub>q</sub>, λ<sub>PM</sub>) plus IMC-based current-loop auto-tuning.</li>
+        <li>Three-phase low-side current sensing with 3-PWM commutation on a TI DRV8302 gate driver.</li>
+        <li>Impedance (virtual spring–damper) rehabilitation mode with effort-adaptive stiffness, validated on a pendulum rig.</li>
+        <li>Safety ceilings on commanded current and torque, independent of the voltage limit.</li>
+        <li>Ships as a proper Arduino library: umbrella header, three example sketches (diagnostics, motor ID, rehab device), a Python analysis script, and full design documentation.</li>
+        <li>Five recorded test sessions — isokinetic tracking, adaptive-stiffness gating, and parameter-ID runs — included as raw serial logs.</li>
+      </ul>
+
+      <figure class="figure">
+        <img src="../assets/img/myfoc-system.jpg" alt="System wiring diagram: Arduino UNO connected to DRV8302 driver, power supply, BLDC motor and quadrature encoder" width="1286" height="569">
+        <figcaption>System architecture — Arduino UNO, DRV8302 three-phase inverter, GM4108 motor, AMT103 encoder.</figcaption>
+      </figure>
+
+      <div class="tags">
+        <span class="tag">C/C++</span>
+        <span class="tag">ATmega328P / AVR</span>
+        <span class="tag">FOC · SVPWM</span>
+        <span class="tag">DRV8302</span>
+        <span class="tag">Quadrature encoder</span>
+        <span class="tag">Impedance control</span>
+        <span class="tag">System ID</span>
+      </div>
+
+      <h2>Code &amp; downloads</h2>
+      <p>
+        MyFOC lives in its own repository as an installable Arduino library, complete
+        with examples, documentation, and the raw validation data.
+      </p>
+      <div class="files">
+        <div class="file">
+          <span class="f-name"><a href="https://github.com/EmilVu/MyFOC" target="_blank" rel="noopener">MyFOC — standalone library repository</a></span>
+          <span class="f-kind">C/C++ · Arduino</span><span class="f-size">GitHub</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="https://github.com/EmilVu/MyFOC/blob/main/DOCUMENTATION.md" target="_blank" rel="noopener">Design &amp; math documentation</a></span>
+          <span class="f-kind">Markdown</span><span class="f-size">GitHub</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="https://github.com/EmilVu/MyFOC/tree/main/data" target="_blank" rel="noopener">Validation test logs 1–5</a></span>
+          <span class="f-kind">Serial CSV</span><span class="f-size">GitHub</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/myfoc-meng-thesis/MyFOC_Thesis_Report.pdf">MyFOC Thesis Report</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">2.5 MB</span>
+        </div>
+      </div>
+
+      <nav class="pager" aria-label="Project navigation">
+        <a href="ece519a-5g-mimo-yolo.html">← 5G Massive-MIMO + YOLOv10</a>
+        <span class="spacer"></span>
+        <a href="../index.html#projects">All projects ↑</a>
+      </nav>
+
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Emil Vu</p>
+      <p>Plain HTML &amp; CSS · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

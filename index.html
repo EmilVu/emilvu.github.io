@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emil Vu — Embedded &amp; Electrical Engineer</title>
+  <meta name="description" content="Emil Vu — Embedded and Electrical Engineer. Motor control (FOC), embedded firmware, and power electronics. MEng ECE at the University of Victoria, graduating September 2026.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="index.html">Emil Vu</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero wrap">
+    <p class="kicker reveal">Victoria, BC · Open to new-grad roles from Sept 2026</p>
+    <h1 class="reveal">Emil Vu</h1>
+    <p class="tagline reveal">Embedded &amp; Electrical Engineer — motor control, firmware, and power electronics.</p>
+    <p class="blurb reveal">
+      I build things where firmware meets hardware: field-oriented motor control written
+      from scratch, real-time systems on FreeRTOS, RF amplifiers, and custom PCBs.
+      Currently finishing my M.Eng. in Electrical &amp; Computer Engineering at the
+      University of Victoria.
+    </p>
+    <div class="hero-links reveal">
+      <a href="assets/Emil_Vu_Resume.pdf">Resume (PDF)</a>
+      <a href="https://github.com/EmilVu" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/emilvu112" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:kietvu112yh@gmail.com">Email</a>
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="wrap">
+      <p class="kicker">About</p>
+      <h2>A short introduction</h2>
+      <p style="color:var(--ink-2); max-width:62ch; margin-bottom:1rem;">
+        My M.Eng. thesis is <a href="projects/myfoc.html">MyFOC</a> — a from-scratch
+        Field-Oriented Control library in C/C++ for BLDC/PMSM motors, with three-phase
+        current sensing and an impedance mode that turns a motor into a programmable
+        spring–damper for arm rehabilitation. Before grad school, my B.Eng. capstone was a
+        <a href="projects/ece499-hf-amplifier.html">140&nbsp;W HF linear amplifier</a>
+        (1.8–30&nbsp;MHz) for emergency communications.
+      </p>
+      <p style="color:var(--ink-2); max-width:62ch;">
+        In industry, I built a Python test-automation framework at Avigilon (Motorola
+        Solutions) and worked on hydrogen fuel-cell systems at Loop Energy. I'm most at
+        home with EV powertrains, batteries, motor control, and embedded firmware — but
+        I'm interested in anything where firmware meets hardware meets the real world.
+      </p>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="wrap">
+      <p class="kicker">Experience</p>
+      <h2>Where I've worked</h2>
+      <div class="rows">
+
+        <div class="row reveal">
+          <div class="when">Sep 2025 — Aug 2026</div>
+          <div>
+            <h3>Graduate Teaching Assistant</h3>
+            <p class="org">University of Victoria · Victoria, BC</p>
+            <p class="product">ECE 250, ECE 299, ECE 350, ECE 355, ECE 441, ECE 455 — digital systems, embedded firmware, communications, and analog labs.</p>
+            <ul>
+              <li>Validated VHDL designs on Xilinx Vivado / Digilent Nexys A7 FPGAs — adder/multiplier logic, a VGA image-processing pipeline, and a MicroBlaze soft-core + AXI system debugged via the Integrated Logic Analyzer (ILA).</li>
+              <li>Operated software-defined radio labs in GNU Radio on USRP and RTL-SDR hardware (AM/SSB/FM/PSK demodulation, FLEX pager decoding), as well as analog-circuits labs on the oscilloscope, function generator, DMM, and wattmeter.</li>
+              <li>Programmed and debugged FreeRTOS firmware on STM32F4 — tasks, queues, and software timers — including a custom EDF deadline-driven scheduler.</li>
+              <li>Programmed and debugged bare-metal STM32F0 in C/CMSIS: timers, EXTI interrupts, DAC/ADC, and an SPI OLED, with NE555/optocoupler PWM circuits verified against a function generator, oscilloscope, and DMM.</li>
+              <li>Guided students through lab procedures, marked deliverables, and helped debug their hardware and firmware one-on-one.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row reveal">
+          <div class="when">May — Dec 2023</div>
+          <div>
+            <h3>System Test &amp; Validation (Co-op)</h3>
+            <p class="org">Avigilon — Motorola Solutions · Vancouver, BC</p>
+            <p class="product">Product: advanced security solutions with high-definition surveillance cameras and access-control systems.</p>
+            <ul>
+              <li>Developed a new Python test-automation framework, improving automation efficiency by 30% and reducing testing time by 8 hours per cycle.</li>
+              <li>Designed and deployed 3D-printed testing jigs using Fusion 360, reducing cost by $300 per station.</li>
+              <li>Created test specifications according to system requirements, and automated test development, maintenance, performance, and execution for both software and hardware products.</li>
+              <li>Integrated test automation into the CI/CD pipeline using Jira, Bamboo, and Docker within an Agile workflow.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row reveal">
+          <div class="when">Sep 2022 — Apr 2023</div>
+          <div>
+            <h3>Electrical Engineer (Co-op)</h3>
+            <p class="org">Loop Energy · Burnaby, BC</p>
+            <p class="product">Product: high-efficiency hydrogen fuel-cell systems and batteries for commercial vehicles.</p>
+            <ul>
+              <li>Assembled 10+ wiring harnesses and ran first-article inspections with root-cause analysis, driving corrective actions that improved design quality and accelerated bring-up.</li>
+              <li>Built a Raspberry Pi 4 + PiCAN3 Vehicle Control Unit (VCU) simulator in Python + CAN to validate controller behavior, remove physical test benches, and shorten validation by days.</li>
+              <li>Co-designed a Fuel Cell Unit (FCU) simulator with swappable wiring and I/O access to test harnesses, sensors, and pumps; enforced controller-spec safety constraints and streamlined testing.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row reveal">
+          <div class="when">Sep — Dec 2021</div>
+          <div>
+            <h3>Jr. Learning Technology Assistant</h3>
+            <p class="org">University of Victoria · Victoria, BC</p>
+            <ul>
+              <li>Supported faculty with classroom audio-visual and lecture-capture technology across campus.</li>
+              <li>Migrated course content to the D2L Brightspace learning-management system.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="wrap">
+      <p class="kicker">Projects</p>
+      <h2>Selected work, by year</h2>
+
+      <div class="timeline">
+
+        <div class="year-group reveal">
+          <span class="year">2026</span>
+
+          <a class="proj" href="projects/myfoc.html">
+            <span class="p-title">MyFOC — Field-Oriented Control from Scratch <span class="arrow">→</span></span>
+            <p class="p-desc">M.Eng. thesis: a complete FOC motor-control library for BLDC/PMSM written from first principles, driving an adaptive arm-rehabilitation device.</p>
+            <p class="p-tags">C/C++ · ATmega328P · SVPWM · DRV8302 · Impedance control</p>
+          </a>
+
+          <a class="proj" href="projects/ece519a-5g-mimo-yolo.html">
+            <span class="p-title">5G Massive-MIMO Video Link with YOLOv10 <span class="arrow">→</span></span>
+            <p class="p-desc">GPU-accelerated 5G NR physical-layer simulation (64×4 MIMO, SVD precoding, OFDM) streaming live video into real-time object detection. ECE 519A.</p>
+            <p class="p-tags">Python · CuPy · OFDM · SVD beamforming · YOLOv10</p>
+          </a>
+        </div>
+
+        <div class="year-group reveal">
+          <span class="year">2025</span>
+
+          <a class="proj" href="projects/ece499-hf-amplifier.html">
+            <span class="p-title">140 W HF Linear Amplifier for Emergency Comms <span class="arrow">→</span></span>
+            <p class="p-desc">B.Eng. capstone: a portable 1.8–30 MHz AM/SSB amplifier with custom band-pass and low-pass filters, built for off-grid disaster communications. ECE 499.</p>
+            <p class="p-tags">RF design · LTspice · PCB layout · VNA testing</p>
+          </a>
+
+          <a class="proj" href="projects/ece449-custom-cpu.html">
+            <span class="p-title">16-bit Pipelined CPU on FPGA <span class="arrow">→</span></span>
+            <p class="p-desc">A custom 16-bit pipelined processor in VHDL with a bootloader, VGA debug console, and memory-mapped I/O on a Nexys A7. ECE 449.</p>
+            <p class="p-tags">VHDL · Vivado · Nexys A7 · Pipelining</p>
+          </a>
+
+          <a class="proj" href="projects/ece455-real-time-systems.html">
+            <span class="p-title">Real-Time Systems on FreeRTOS <span class="arrow">→</span></span>
+            <p class="p-desc">Two STM32F4 projects: a sensor-driven traffic-light controller, and an earliest-deadline-first scheduler built on top of FreeRTOS. ECE 455.</p>
+            <p class="p-tags">FreeRTOS · STM32F4 · C · EDF scheduling</p>
+          </a>
+        </div>
+
+        <div class="year-group reveal">
+          <span class="year">2024</span>
+
+          <a class="proj" href="projects/ece355-pwm-system.html">
+            <span class="p-title">PWM Generation &amp; Monitoring System <span class="arrow">→</span></span>
+            <p class="p-desc">Bare-metal STM32F0 system that measures and controls an NE555 PWM source — potentiometer-driven frequency control with a live OLED readout. ECE 355.</p>
+            <p class="p-tags">STM32F0 · C/CMSIS · NE555 · EXTI · SPI OLED</p>
+          </a>
+        </div>
+
+        <div class="year-group reveal">
+          <span class="year">2021</span>
+
+          <a class="proj" href="projects/ece299-alarm-clock.html">
+            <span class="p-title">STM32 Alarm Clock — PCB to Enclosure <span class="arrow">→</span></span>
+            <p class="p-desc">First full product build: alarm-clock firmware on STM32F4, a custom KiCad PCB, and a SolidWorks enclosure. ECE 299.</p>
+            <p class="p-tags">STM32F4 HAL · KiCad · SolidWorks</p>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="section">
+    <div class="wrap">
+      <p class="kicker">Education</p>
+      <h2>University of Victoria</h2>
+      <div class="rows">
+        <div class="row reveal">
+          <div class="when">2025 — Sep 2026</div>
+          <div>
+            <h3>M.Eng., Electrical &amp; Computer Engineering</h3>
+            <p class="desc">Thesis: MyFOC — a from-scratch field-oriented control library with application in rehabilitation.</p>
+          </div>
+        </div>
+        <div class="row reveal">
+          <div class="when">2019 — 2025</div>
+          <div>
+            <h3>B.Eng., Electrical Engineering (with Co-ops)</h3>
+            <p class="desc">Capstone: 140 W portable HF linear amplifier with band-pass/low-pass filtering for emergency communications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="wrap">
+      <p class="kicker">Skills</p>
+      <h2>Tools I work with</h2>
+      <div class="skills">
+        <div class="skill reveal"><span class="k">Languages</span><span class="v">Python, C/C++, Verilog, VHDL, MATLAB</span></div>
+        <div class="skill reveal"><span class="k">Embedded</span><span class="v">FreeRTOS, STM32, BLDC/PMSM motor control, FOC, PWM, CAN, SPI, I2C, UART</span></div>
+        <div class="skill reveal"><span class="k">RF &amp; Analog</span><span class="v">HF amplifier design, filter design (Chebyshev, π-network), LTspice</span></div>
+        <div class="skill reveal"><span class="k">CAD / PCB</span><span class="v">KiCad, Eagle, EasyEDA, SolidWorks, Fusion 360</span></div>
+        <div class="skill reveal"><span class="k">DevOps</span><span class="v">Git, Docker, CI/CD, Jira, Bamboo, Agile</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="wrap">
+      <p class="kicker">Contact</p>
+      <h2>Get in touch</h2>
+      <p style="color:var(--ink-2); max-width:56ch; margin-bottom:1.6rem;">
+        I'm looking for new-grad embedded / electrical engineering roles starting
+        September 2026 — based in BC and happy to relocate.
+      </p>
+      <div class="contact-list">
+        <p class="mono">Email — <a href="mailto:kietvu112yh@gmail.com">kietvu112yh@gmail.com</a></p>
+        <p class="mono">LinkedIn — <a href="https://linkedin.com/in/emilvu112" target="_blank" rel="noopener">linkedin.com/in/emilvu112</a></p>
+        <p class="mono">GitHub — <a href="https://github.com/EmilVu" target="_blank" rel="noopener">github.com/EmilVu</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Emil Vu</p>
+      <p>Plain HTML &amp; CSS · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

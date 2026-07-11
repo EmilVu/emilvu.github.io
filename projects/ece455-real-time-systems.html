@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Systems on FreeRTOS · Emil Vu</title>
+  <meta name="description" content="Two STM32F4 FreeRTOS projects: a sensor-driven traffic-light controller and an earliest-deadline-first (EDF) scheduler layered on FreeRTOS.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Emil Vu</a>
+      <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="page">Projects</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <p class="crumb"><a href="../index.html#projects">← All projects</a></p>
+
+    <header class="p-head">
+      <p class="kicker">2025 · ECE 455 · Real-Time Systems · Team of 2</p>
+      <h1>Real-Time Systems on FreeRTOS</h1>
+      <p class="dek">
+        Two projects on the STM32F4 Discovery board: a sensor-driven traffic-light
+        controller built from FreeRTOS primitives, and a deadline-driven (EDF) scheduler
+        implemented on top of FreeRTOS's priority mechanism.
+      </p>
+    </header>
+
+    <figure class="figure">
+      <img class="tall" src="../assets/img/ece455-breadboard.jpg" alt="STM32F4 Discovery board wired to a breadboard with a strip of green, amber and red LEDs representing traffic and lights" width="1098" height="1139">
+      <figcaption>Project 1 hardware — the STM32F4 drives shift registers that light a lane of "cars" and the traffic signals.</figcaption>
+    </figure>
+
+    <article class="p-body">
+
+      <h2>Project 1 — Traffic Light System</h2>
+      <p>
+        A one-lane intersection simulated in hardware: a potentiometer sets the traffic
+        density, LEDs driven through shift registers show cars advancing toward the light,
+        and the signal timing adapts to the measured flow. The design decomposes cleanly
+        into four FreeRTOS tasks — flow measurement (ADC), traffic generation, light
+        control, and display — communicating over queues, with software timers sequencing
+        the green/yellow/red phases. Heavier traffic shortens the red phase; light traffic
+        lengthens it.
+      </p>
+
+      <h2>Project 2 — Deadline-Driven Scheduler</h2>
+      <p>
+        FreeRTOS schedules by fixed priority; this project adds true earliest-deadline-first
+        scheduling on top. A highest-priority DDS task owns three linked lists (active,
+        completed, overdue) and processes release/complete/overdue events from a request
+        queue. It sorts released tasks by absolute deadline with an insertion algorithm,
+        then manipulates FreeRTOS priorities so only the earliest-deadline task runs. A
+        generator releases periodic task sets and a monitor reports list states, letting us
+        validate the schedule against hand-drawn Gantt charts across three test benches —
+        including a deliberately overloaded 100%-utilization case where deadline misses
+        are expected and correctly detected.
+      </p>
+
+      <figure class="figure">
+        <img src="../assets/img/ece455-dds-architecture.png" alt="Architecture diagram: task generator, user tasks and monitor task sending requests to the deadline-driven scheduler which manages active, completed and overdue lists" width="1028" height="410">
+        <figcaption>DDS architecture — auxiliary tasks communicate with the scheduler exclusively through a request queue.</figcaption>
+      </figure>
+
+      <h2>Highlights</h2>
+      <ul>
+        <li>Idiomatic FreeRTOS design: tasks, queues, software timers, semaphores, and <span class="mono">xQueueOverwrite</span> mailboxes.</li>
+        <li>EDF insertion sort over linked task lists with explicit handling of empty-list, head, mid-list, and tail cases.</li>
+        <li>Dynamic priority manipulation to realize EDF on a fixed-priority kernel, with overdue detection via a re-armed deadline timer.</li>
+        <li>Validated against Gantt-chart predictions over 1500 ms hyperperiods on three test benches, up to 100% CPU utilization.</li>
+      </ul>
+
+      <div class="tags">
+        <span class="tag">FreeRTOS</span>
+        <span class="tag">STM32F4</span>
+        <span class="tag">C</span>
+        <span class="tag">EDF scheduling</span>
+        <span class="tag">Queues · Timers</span>
+        <span class="tag">ADC · GPIO</span>
+      </div>
+
+      <h2>Files &amp; downloads</h2>
+      <div class="files">
+        <div class="file">
+          <span class="f-name"><a href="../files/ece455-real-time-systems/ECE455_P1_Traffic_Light_System_Report.pdf">Project 1 Report — Traffic Light System</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">1.1 MB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece455-real-time-systems/ECE455_P2_Deadline_Driven_Scheduler_Report.pdf">Project 2 Report — Deadline-Driven Scheduler</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">600 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece455-real-time-systems/code/traffic_light_system.c">traffic_light_system.c</a></span>
+          <span class="f-kind">C</span><span class="f-size">21 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece455-real-time-systems/code/edf_deadline_scheduler.c">edf_deadline_scheduler.c</a></span>
+          <span class="f-kind">C</span><span class="f-size">21 KB</span>
+        </div>
+      </div>
+      <p class="files-note">Source files were reconstructed from the code appendices of the two reports.</p>
+
+      <nav class="pager" aria-label="Project navigation">
+        <a href="ece355-pwm-system.html">← PWM Generation &amp; Monitoring</a>
+        <span class="spacer"></span>
+        <a href="ece449-custom-cpu.html">16-bit Pipelined CPU →</a>
+      </nav>
+
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Emil Vu</p>
+      <p>Plain HTML &amp; CSS · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STM32 Alarm Clock — PCB to Enclosure · Emil Vu</title>
+  <meta name="description" content="First full product build: alarm-clock firmware on STM32F4, a custom KiCad PCB fabricated by Seeed, and a SolidWorks enclosure.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Emil Vu</a>
+      <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="page">Projects</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <p class="crumb"><a href="../index.html#projects">← All projects</a></p>
+
+    <header class="p-head">
+      <p class="kicker">2021 · ECE 299 · Design Project I · Team of 2</p>
+      <h1>STM32 Alarm Clock — PCB to Enclosure</h1>
+      <p class="dek">
+        My first complete product build: a working alarm clock with STM32F4 firmware, a
+        custom two-layer PCB designed in KiCad and fabricated by Seeed, and a
+        Tamagotchi-inspired enclosure modeled in SolidWorks.
+      </p>
+    </header>
+
+    <figure class="figure">
+      <img src="../assets/img/ece299-enclosure.png" alt="SolidWorks render of the alarm clock enclosure with a display window and five side buttons" width="454" height="332">
+      <figcaption>SolidWorks enclosure — display window, five control buttons, wall-mount keyhole on the back.</figcaption>
+    </figure>
+
+    <article class="p-body">
+
+      <h2>Overview</h2>
+      <p>
+        The clock does everything a bedside unit should: it keeps time on the STM32's RTC,
+        shows it on a four-digit 7-segment LED display, and lets you set the time and an
+        alarm through five push buttons — with snooze and off behaviors, and a light-based
+        alarm driven through an N-channel MOSFET. The firmware (~1,300 lines of C on the
+        STM32F4 HAL) handles 12/24-hour formats, display multiplexing, debounced inputs,
+        and the alarm state machine.
+      </p>
+      <p>
+        The hardware side was the real lesson: current-limit calculations for the display
+        segments, a MOSFET driver for the alarm light, and routing it all on a
+        99&nbsp;×&nbsp;70&nbsp;mm two-layer board in KiCad. We generated Gerbers, had the
+        board fabricated by Seeed Technology, and assembled and brought it up ourselves —
+        then closed the loop with a SolidWorks enclosure sized to the finished board.
+      </p>
+
+      <h2>Highlights</h2>
+      <ul>
+        <li>Complete firmware in C on STM32F4 HAL: RTC timekeeping, alarm state machine, multiplexed 7-segment drive, and button handling.</li>
+        <li>Custom KiCad schematic and two-layer PCB layout, fabricated by Seeed and verified against hand calculations for LED current limits.</li>
+        <li>MOSFET-switched light alarm output.</li>
+        <li>SolidWorks enclosure with display window, button cutouts, and ventilation — parts and assembly included below.</li>
+      </ul>
+
+      <figure class="figure">
+        <img src="../assets/img/ece299-pcb-layout.png" alt="KiCad PCB layout of the alarm clock board showing STM32 header rows, button footprints and display connections" width="538" height="380">
+        <figcaption>Final PCB layout in KiCad — STM32 header, five buttons, display drive, and the MOSFET stage.</figcaption>
+      </figure>
+
+      <div class="tags">
+        <span class="tag">STM32F4 · HAL</span>
+        <span class="tag">C</span>
+        <span class="tag">KiCad</span>
+        <span class="tag">PCB bring-up</span>
+        <span class="tag">SolidWorks</span>
+        <span class="tag">7-segment display</span>
+      </div>
+
+      <h2>Files &amp; downloads</h2>
+      <div class="files">
+        <div class="file">
+          <span class="f-name"><a href="../files/ece299-alarm-clock/ECE299_Alarm_Clock_Final_Report.pdf">Final Report</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">620 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece299-alarm-clock/code/alarm_clock_stm32f4.c">alarm_clock_stm32f4.c — full firmware</a></span>
+          <span class="f-kind">C</span><span class="f-size">33 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="https://github.com/EmilVu/emilvu.github.io/tree/main/files/ece299-alarm-clock/pcb">KiCad project + fabrication Gerbers — browse</a></span>
+          <span class="f-kind">KiCad · Gerber</span><span class="f-size">268 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="https://github.com/EmilVu/emilvu.github.io/tree/main/files/ece299-alarm-clock/cad">SolidWorks enclosure — parts &amp; assembly</a></span>
+          <span class="f-kind">SLDPRT · SLDASM</span><span class="f-size">1.3 MB</span>
+        </div>
+      </div>
+
+      <nav class="pager" aria-label="Project navigation">
+        <span class="spacer"></span>
+        <a href="ece355-pwm-system.html">PWM Generation &amp; Monitoring →</a>
+      </nav>
+
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Emil Vu</p>
+      <p>Plain HTML &amp; CSS · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

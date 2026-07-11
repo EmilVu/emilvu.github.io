@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16-bit Pipelined CPU on FPGA · Emil Vu</title>
+  <meta name="description" content="A custom 16-bit pipelined processor implemented in VHDL on a Digilent Nexys A7, with bootloader, VGA debug console, and memory-mapped I/O.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Emil Vu</a>
+      <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="page">Projects</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <p class="crumb"><a href="../index.html#projects">← All projects</a></p>
+
+    <header class="p-head">
+      <p class="kicker">2025 · ECE 449 · Team of 3</p>
+      <h1>16-bit Pipelined CPU on FPGA</h1>
+      <p class="dek">
+        A custom 16-bit pipelined processor written in VHDL and brought up on a Digilent
+        Nexys A7 — complete with a bootloader, a VGA debug console, and memory-mapped I/O.
+      </p>
+    </header>
+
+    <figure class="figure">
+      <img src="../assets/img/ece449-block-diagram.png" alt="Top-level block diagram of the 16-bit pipelined CPU showing program counter, ROM, RAM, register file, ALU, and console output stages" width="1600" height="967">
+      <figcaption>Top-level architecture — PC, instruction ROM, register file, ALU, RAM, and the VGA console path.</figcaption>
+    </figure>
+
+    <article class="p-body">
+
+      <h2>Overview</h2>
+      <p>
+        Built from the ground up in VHDL, the processor implements a 16-bit ISA with
+        multiple instruction formats (three-register ALU operations, immediates, loads and
+        stores, and branches) flowing through a classic pipeline with hazard handling. The
+        design was synthesized in Xilinx Vivado and validated on real hardware rather than
+        simulation alone.
+      </p>
+      <p>
+        The part that made debugging tractable: a VGA console rendered by the FPGA itself.
+        A chain of formatting modules (nibble → byte → word to ASCII) streams register and
+        memory state to a screen through a custom video-timing generator, so the
+        processor's internals are visible live while programs run. A bootloader and
+        memory-mapped I/O round out the system, letting programs load and interact with
+        the board's switches and displays.
+      </p>
+
+      <h2>Highlights</h2>
+      <ul>
+        <li>Complete datapath in VHDL: ALU, register file, program counter, sign extension, ROM/RAM, and forwarding/hazard logic.</li>
+        <li>On-FPGA VGA debug console with custom video timing and hardware ASCII formatters.</li>
+        <li>Bootloader plus memory-mapped I/O for the Nexys A7's peripherals, including the 7-segment display.</li>
+        <li>Verified on hardware with Vivado's Integrated Logic Analyzer (ILA).</li>
+      </ul>
+
+      <div class="tags">
+        <span class="tag">VHDL</span>
+        <span class="tag">Xilinx Vivado</span>
+        <span class="tag">Nexys A7 / Artix-7</span>
+        <span class="tag">Pipelining</span>
+        <span class="tag">VGA</span>
+        <span class="tag">ISA design</span>
+      </div>
+
+      <h2>Files &amp; downloads</h2>
+      <div class="files">
+        <div class="file">
+          <span class="f-name"><a href="../files/ece449-custom-cpu/ECE449_Custom_CPU_Report.pdf">Project Report</a></span>
+          <span class="f-kind">PDF</span><span class="f-size">1.5 MB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="https://github.com/EmilVu/emilvu.github.io/tree/main/files/ece449-custom-cpu/code">VHDL source — browse all 16 files</a></span>
+          <span class="f-kind">VHDL · XDC</span><span class="f-size">220 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece449-custom-cpu/code/TopModule.vhd">TopModule.vhd</a></span>
+          <span class="f-kind">VHDL</span><span class="f-size">61 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece449-custom-cpu/code/ALU.vhd">ALU.vhd</a></span>
+          <span class="f-kind">VHDL</span><span class="f-size">30 KB</span>
+        </div>
+        <div class="file">
+          <span class="f-name"><a href="../files/ece449-custom-cpu/Top_Module_Block_Diagram.png">Block diagram (full resolution)</a></span>
+          <span class="f-kind">PNG</span><span class="f-size">298 KB</span>
+        </div>
+      </div>
+
+      <nav class="pager" aria-label="Project navigation">
+        <a href="ece455-real-time-systems.html">← Real-Time Systems on FreeRTOS</a>
+        <span class="spacer"></span>
+        <a href="ece499-hf-amplifier.html">140 W HF Linear Amplifier →</a>
+      </nav>
+
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Emil Vu</p>
+      <p>Plain HTML &amp; CSS · hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

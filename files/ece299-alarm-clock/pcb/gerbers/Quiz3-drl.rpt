@@ -1,0 +1,26 @@
+Drill report for \\samba4.engr.uvic.ca\davidalfred772\Documents\Quiz3\Quiz3.kicad_pcb
+Created on 2021-07-21 2:19:22 PM
+
+Copper Layer Stackup:
+    =============================================================
+    L1 :  F.Cu                      front
+    L2 :  B.Cu                      back
+
+
+Drill file 'Quiz3-PTH.drl' contains
+    plated through holes:
+    =============================================================
+    T1  0.75mm  0.030"  (12 holes)
+    T2  0.80mm  0.031"  (16 holes)
+    T3  1.07mm  0.042"  (118 holes)
+    T4  1.10mm  0.043"  (20 holes)
+
+    Total plated holes count 166
+
+
+Drill file 'Quiz3-NPTH.drl' contains
+    unplated through holes:
+    =============================================================
+    T1  2.10mm  0.083"  (2 holes)
+
+    Total unplated holes count 2

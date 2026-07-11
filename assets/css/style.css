@@ -1,0 +1,255 @@
+/* ============================================================
+   Emil Vu — Portfolio
+   Plain CSS, no build step. Edit freely.
+   Palette: strict black & white.
+   Type: Space Grotesk (display) · IBM Plex Sans (body) · IBM Plex Mono (meta)
+   ============================================================ */
+
+:root {
+  --bg:      #ffffff;
+  --ink:     #111111;   /* primary text */
+  --ink-2:   #4f4f4f;   /* secondary text */
+  --ink-3:   #9a9a9a;   /* meta / faint */
+  --line:    #e8e8e8;   /* hairlines */
+  --hover:   #fafafa;   /* row hover wash */
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body:    "IBM Plex Sans", sans-serif;
+  --font-mono:    "IBM Plex Mono", monospace;
+
+  --w: 46rem;           /* content column */
+  --pad: 1.5rem;
+}
+
+/* ---------- base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;              /* 17px */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--w); margin: 0 auto; padding: 0 var(--pad); }
+
+a { color: inherit; text-decoration: none; }
+p a, li a, .link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--ink-3);
+  transition: text-decoration-color .15s ease;
+}
+p a:hover, li a:hover, .link:hover { text-decoration-color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+
+::selection { background: var(--ink); color: var(--bg); }
+
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* ---------- type ---------- */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; }
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.mono { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-2); }
+
+/* ---------- nav ---------- */
+.nav {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.nav-inner {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  padding: 1.1rem var(--pad);
+  max-width: var(--w); margin: 0 auto;
+}
+.nav-name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+.nav-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+.nav-links a {
+  font-size: .875rem; color: var(--ink-2);
+  transition: color .15s ease;
+}
+.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero { padding: 6.5rem 0 5rem; }
+.hero h1 {
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: .4rem 0 1.1rem;
+}
+.hero .tagline { font-size: 1.25rem; color: var(--ink); max-width: 34ch; line-height: 1.45; font-weight: 500; }
+.hero .blurb { margin-top: 1.2rem; color: var(--ink-2); max-width: 58ch; }
+.hero-links { margin-top: 2rem; display: flex; gap: 1.6rem; flex-wrap: wrap; }
+.hero-links a {
+  font-family: var(--font-mono); font-size: .8125rem;
+  text-decoration: underline; text-underline-offset: 4px;
+  text-decoration-color: var(--ink-3);
+}
+.hero-links a:hover { text-decoration-color: var(--ink); }
+
+/* ---------- sections ---------- */
+.section { padding: 4.5rem 0; border-top: 1px solid var(--line); }
+.section h2 { font-size: 1.45rem; margin: .35rem 0 2.2rem; }
+
+/* ---------- experience & education rows ---------- */
+.rows { display: grid; gap: 0; }
+.row {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--line);
+}
+.rows .row:first-child { border-top: none; padding-top: 0; }
+.row .when { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-3); padding-top: .2rem; }
+.row h3 { font-size: 1.05rem; font-weight: 600; font-family: var(--font-body); }
+.row .org { color: var(--ink-2); font-size: .95rem; margin-top: .1rem; }
+.row .desc { color: var(--ink-2); margin-top: .55rem; font-size: .95rem; max-width: 56ch; }
+.row .product { color: var(--ink-3); font-size: .875rem; margin-top: .45rem; font-style: italic; }
+.row ul { margin: .6rem 0 0 1.05rem; color: var(--ink-2); font-size: .95rem; max-width: 58ch; }
+.row li { margin-bottom: .45rem; }
+.row li::marker { color: var(--ink-3); }
+
+/* ---------- projects timeline (the year spine) ---------- */
+.timeline { position: relative; padding-left: 5.5rem; }
+.timeline::before {
+  content: "";
+  position: absolute; left: 3.4rem; top: .4rem; bottom: .4rem;
+  width: 1px; background: var(--line);
+}
+.year-group { position: relative; padding: 0 0 2.4rem; }
+.year-group:last-child { padding-bottom: 0; }
+.year {
+  position: absolute; left: -5.5rem; top: .55rem;
+  width: 3.4rem;
+  font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-3);
+}
+.year-group::before {           /* tick on the spine */
+  content: "";
+  position: absolute; left: -2.1rem; top: 1.05rem;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--bg); border: 1.5px solid var(--ink);
+}
+
+.proj {
+  display: block;
+  padding: 1.05rem 1.1rem;
+  margin: 0 -1.1rem;
+  border-radius: 6px;
+  transition: background .15s ease;
+}
+.proj:hover { background: var(--hover); }
+.proj + .proj { margin-top: .15rem; }
+.proj .p-title {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.1rem;
+  display: flex; align-items: baseline; gap: .5rem;
+}
+.proj .p-title .arrow { font-family: var(--font-body); color: var(--ink-3); transition: transform .15s ease, color .15s ease; }
+.proj:hover .arrow { transform: translateX(3px); color: var(--ink); }
+.proj .p-desc { color: var(--ink-2); font-size: .95rem; margin-top: .3rem; max-width: 56ch; }
+.proj .p-tags { margin-top: .55rem; font-family: var(--font-mono); font-size: .75rem; color: var(--ink-3); }
+
+/* ---------- skills ---------- */
+.skills { display: grid; gap: 1rem; }
+.skill { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1.5rem; }
+.skill .k { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-3); padding-top: .15rem; }
+.skill .v { color: var(--ink-2); font-size: .95rem; }
+
+/* ---------- contact ---------- */
+.contact-list { display: grid; gap: .55rem; }
+.contact-list .mono a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ink-3); }
+.contact-list .mono a:hover { text-decoration-color: var(--ink); }
+
+/* ---------- footer ---------- */
+.footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; }
+.footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.footer p { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-3); }
+
+/* ============================================================
+   Project pages
+   ============================================================ */
+.crumb { padding: 2.2rem 0 0; }
+.crumb a { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-2); }
+.crumb a:hover { color: var(--ink); }
+
+.p-head { padding: 2.2rem 0 2.6rem; }
+.p-head h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); margin: .5rem 0 .9rem; letter-spacing: -0.015em; }
+.p-head .dek { color: var(--ink-2); font-size: 1.1rem; max-width: 56ch; }
+
+.figure { margin: 0 0 2.8rem; }
+.figure img, .figure video { border: 1px solid var(--line); border-radius: 6px; width: 100%; }
+.figure img.tall { max-height: 560px; width: auto; margin: 0 auto; }
+.figure figcaption { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-3); margin-top: .6rem; }
+
+.p-body { padding-bottom: 1rem; }
+.p-body h2 { font-size: 1.2rem; margin: 2.6rem 0 1rem; }
+.p-body p { color: var(--ink-2); margin-bottom: 1rem; max-width: 62ch; }
+.p-body ul { margin: 0 0 1rem 1.1rem; color: var(--ink-2); max-width: 62ch; }
+.p-body li { margin-bottom: .45rem; }
+.p-body li::marker { color: var(--ink-3); }
+
+.tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0 .4rem; }
+.tag {
+  font-family: var(--font-mono); font-size: .75rem; color: var(--ink-2);
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: .28rem .7rem;
+}
+
+/* files & downloads */
+.files { margin: 1rem 0 0; }
+.file {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem; align-items: baseline;
+  padding: .8rem .2rem;
+  border-top: 1px solid var(--line);
+}
+.files .file:last-child { border-bottom: 1px solid var(--line); }
+.file .f-name a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ink-3); }
+.file .f-name a:hover { text-decoration-color: var(--ink); }
+.file .f-kind, .file .f-size { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-3); white-space: nowrap; }
+.files-note { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-3); margin-top: .8rem; }
+
+/* prev / next */
+.pager { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line); margin-top: 3.5rem; padding: 1.6rem 0 0; }
+.pager a { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-2); }
+.pager a:hover { color: var(--ink); }
+.pager .spacer { flex: 1; }
+
+/* ---------- reveal on scroll ---------- */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 40rem) {
+  .hero { padding: 4rem 0 3.5rem; }
+  .row, .skill { grid-template-columns: 1fr; gap: .25rem; }
+  .row .when { padding-top: 0; }
+  .timeline { padding-left: 0; }
+  .timeline::before { display: none; }
+  .year-group::before { display: none; }
+  .year { position: static; width: auto; display: block; margin-bottom: .5rem; padding-bottom: .4rem; border-bottom: 1px solid var(--line); }
+  .proj { margin: 0 -.6rem; padding: .9rem .6rem; }
+  .file { grid-template-columns: 1fr; gap: .15rem; }
+}
